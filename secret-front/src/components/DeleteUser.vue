@@ -18,9 +18,6 @@
         </v-btn>
       </v-card-actions>
     </v-card>
-    <v-snackbar v-model="snackbar" :timeout="timeout" :color="snackbarColor">{{
-      snackbarText
-    }}</v-snackbar>
   </v-row>
 </template>
 <script>
@@ -29,34 +26,13 @@ export default {
     deleting: Boolean,
   },
   data() {
-    return {
-      snackbar: false,
-      snackbarText: "",
-      snackbarColor: "success",
-      timeout: 3000,
-    };
   },
   methods: {
     emitDelete() {
       this.$emit("deletar");
-      this.snackbar = true;
-      this.snackbarText = "Usuário deletado com sucesso";
-      this.snackbarColor = "success";
-      this.timeout = 5000;
     },
     cancelDelete() {
       this.$emit("close");
-      this.snackbar = true;
-      this.snackbarText = "Exclusão de usuário cancelada";
-      this.snackbarColor = "warning";
-      this.timeout = 5000;
-    },
-  },
-  watch: {
-    deleting(val) {
-      if (val) {
-        this.snackbar = false;
-      }
     },
   },
 };

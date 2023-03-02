@@ -72,10 +72,6 @@ export default {
       setTimeout(() => {
         this.emitData();
         this.emitSave();
-        this.snackbar = true;
-        this.snackbarText = 'Usuário salvo com sucesso';
-        this.snackbarColor = 'success';
-        this.timeout = 5000;
       }, 400);
     } else {
       this.snackbar = true;

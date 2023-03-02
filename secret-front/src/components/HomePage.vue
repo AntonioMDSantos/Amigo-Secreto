@@ -2,13 +2,18 @@
   <v-card>
     <v-layout class="fill-height">
       <v-app-bar color="primary" prominent>
-        <v-img
-        src="../assets/img/boostech_log.png"
-        contain
-        ></v-img>
+        <v-img src="../assets/img/boostech_log.png" contain></v-img>
         <v-btn variant="text" icon="mdi-magnify"></v-btn>
         <v-btn icon="mdi-plus" @click="dialogAdd = true"></v-btn>
       </v-app-bar>
+      <v-snackbar
+        v-model="snackbar.show"
+        :timeout="snackbar.timeout"
+        :color="snackbar.color"
+        :top="true"
+      >
+        {{ snackbar.text }}
+      </v-snackbar>
       <v-main class="flex-grow-1">
         <v-table>
           <thead>
@@ -102,6 +107,12 @@ export default {
     selectedUser: null,
     users: [],
     sorteio: null,
+    snackbar: {
+      show: false,
+      text: "",
+      timeout: 3000,
+      color: "",
+    },
   }),
   created() {
     this.loadUsers();
@@ -118,16 +129,32 @@ export default {
         });
     },
     create(nome, email) {
+      const exists = this.users.some((user) => user.email === email);
+
+      if (exists) {
+        this.snackbar = {
+          show: true,
+          text: "O e-mail inserido já está em uso!",
+          timeout: 3000,
+          color: "red",
+        };
+        return;
+      }
       fetch("http://localhost:8000/create", {
         method: "POST",
         body: JSON.stringify({ nome: nome, email: email }),
         headers: { "Content-Type": "application/json" },
       })
         .then((res) => res.json())
-        .then((data) => {
+        .then(() => {
           this.loadUsers();
+          this.snackbar = {
+            show: true,
+          text: "Cadastrado com sucesso",
+          timeout: 2000,
+          color: "green",
+          }
           this.dialogAdd = false;
-          console.log("Usuário adicionado com sucesso:", data);
         })
         .catch((error) => {
           console.error("Erro ao adicionar usuário:", error);
@@ -141,6 +168,12 @@ export default {
         .then(() => {
           this.loadUsers();
           this.dialogDelete = false;
+          this.snackbar = {
+          show: true,
+          text: "Usuario deletado com sucesso",
+          timeout: 2000,
+          color: "success",
+          }
         })
         .catch((error) => {
           console.error(error);
