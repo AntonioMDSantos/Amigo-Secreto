@@ -20,7 +20,7 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
 * Você instalou as `dependência`
 
-## 🚀 Instalando dependencias do back
+## 🚀 Instalando dependencias
 
 ### ```Para instalar as dependencias do back, siga estas etapas:```
 
