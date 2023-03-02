@@ -77,6 +77,7 @@
         <UpdateUser
           @close="dialogUpdate = false"
           :selectedUser="selectedUser"
+          @action="updateUser"
         />
       </v-dialog>
     </v-layout>
@@ -180,20 +181,27 @@ export default {
         });
     },
     updateUser(id, nome, email) {
-      fetch(`http://localhost:8000/update/${id}`, {
-        method: "PUT",
-        body: JSON.stringify({ nome: nome, email: email }),
-        headers: { "Content-Type": "application/json" },
-      })
-        .then((res) => res.json())
-        .then(() => {
-          this.loadUsers();
-          this.dialogUpdate = false;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    },
+  fetch(`http://localhost:8000/update/${id}`, {
+    method: "PUT",
+    body: JSON.stringify({ nome: nome, email: email }),
+    headers: { "Content-Type": "application/json" },
+  })
+    .then((res) => res.json())
+    .then(() => {
+      console.log(id, nome, email)
+      this.loadUsers();
+      this.dialogUpdate = false;
+      this.snackbar = {
+        show: true,
+        text: "Usuário atualizado com sucesso",
+        timeout: 2000,
+        color: "success",
+      };
+    })
+    .catch((error) => {
+      console.error("Erro ao atualizar usuário:", error);
+    });
+},
     sortear() {
       const shuffledUsers = this.users.slice().sort(() => Math.random() - 0.5);
       const sortedUsers = shuffledUsers.map((user, index) => {

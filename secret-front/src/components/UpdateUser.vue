@@ -68,12 +68,15 @@ export default {
   },
   methods: {
     validate() {
-      if (this.$refs.form.validate()) {
-        setTimeout(() => {
-          this.$emit("action", this.user);
-        }, 400);
-      }
-    },
+  if (this.$refs.form.validate()) {
+    setTimeout(() => {
+      const id = this.user.id;
+      const nome = this.user.nome;
+      const email = this.user.email;
+      this.$emit("action", id, nome, email);
+    }, 400);
+  }
+},
     close() {
       this.$emit("close");
     },
