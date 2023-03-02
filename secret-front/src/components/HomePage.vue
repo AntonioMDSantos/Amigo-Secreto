@@ -181,6 +181,17 @@ export default {
         });
     },
     updateUser(id, nome, email) {
+      const exists = this.users.some((user) => user.email === email);
+
+      if (exists) {
+        this.snackbar = {
+          show: true,
+          text: "O e-mail inserido já está em uso!",
+          timeout: 3000,
+          color: "red",
+        };
+        return;
+      }
   fetch(`http://localhost:8000/update/${id}`, {
     method: "PUT",
     body: JSON.stringify({ nome: nome, email: email }),
@@ -188,7 +199,6 @@ export default {
   })
     .then((res) => res.json())
     .then(() => {
-      console.log(id, nome, email)
       this.loadUsers();
       this.dialogUpdate = false;
       this.snackbar = {
