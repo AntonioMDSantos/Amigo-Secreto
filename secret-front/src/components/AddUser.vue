@@ -14,7 +14,7 @@
                   label="Nome" 
                   required 
                   variant="outlined"
-                  :rules="[v => !!v || 'Nome é obrigatório']"
+                  :rules="[v => !!v || 'Nome é obrigatório', v => /^[a-zA-Z\s]*$/.test(v) || 'Nome deve conter apenas letras e espaços']"
                 ></v-text-field>
               </v-col>
               <v-col cols="12" sm="16" md="14">
@@ -66,16 +66,16 @@ export default {
     emitSave() {
       this.$emit("save");
     },
-    validate() {
+validate() {
   if (this.$refs.form.validate()) {
-    if (/.+@.+/.test(this.email)) {
+    if (/.+@.+/.test(this.email) && /^[a-zA-Z\s]*$/.test(this.nome)) {
       setTimeout(() => {
         this.emitData();
         this.emitSave();
       }, 400);
     } else {
       this.snackbar = true;
-      this.snackbarText = 'Por favor, insira um email válido';
+      this.snackbarText = 'Por favor, insira um email válido e um nome contendo apenas letras e espaços';
       this.snackbarColor = 'error';
     }
   }
