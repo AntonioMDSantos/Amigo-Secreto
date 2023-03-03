@@ -3,7 +3,6 @@
     <v-layout class="fill-height">
       <v-app-bar color="primary" prominent>
         <v-img src="../assets/img/boostech_log.png" contain></v-img>
-        <v-btn variant="text" icon="mdi-magnify"></v-btn>
         <v-btn icon="mdi-plus" @click="dialogAdd = true"></v-btn>
       </v-app-bar>
       <v-snackbar
@@ -15,6 +14,16 @@
         {{ snackbar.text }}
       </v-snackbar>
       <v-main class="flex-grow-1">
+        <v-text-field
+        density="compact"
+        label="Pesquise por nome ou email"
+        prepend-inner-icon="mdi-magnify"
+        variant="outlined"
+        single-line
+        hide-details
+        v-model="searchTerm"
+        input="searchUsers"
+      ></v-text-field>
         <v-table>
           <thead>
             <tr>
@@ -26,7 +35,7 @@
           </thead>
           <tbody>
             <tr
-              v-for="user in users"
+            v-for="user in filteredUsers"
               :key="user.id"
               @click="selectedUser = user"
             >
@@ -37,6 +46,7 @@
                   class="mx-2"
                   color="teal accent-4"
                   @click="
+                    selectedUser = { ...user, editing: true };
                     dialogUpdate = true;
                     userId = user.id;
                   "
@@ -105,9 +115,10 @@ export default {
     dialogDelete: false,
     dialogUpdate: false,
     group: null,
-    selectedUser: null,
+    selectedUser: {},
     users: [],
     sorteio: null,
+    searchTerm: "",
     snackbar: {
       show: false,
       text: "",
@@ -115,6 +126,15 @@ export default {
       color: "",
     },
   }),
+  computed: {
+    filteredUsers() {
+      return this.users.filter(
+        (user) =>
+          user.nome.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          user.email.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    },
+  },
   created() {
     this.loadUsers();
   },
@@ -123,12 +143,27 @@ export default {
       fetch("http://localhost:8000/list")
         .then((res) => res.json())
         .then((data) => {
-          this.users = data;
+          this.users = data.map((user) => {
+            return { ...user, editing: false };
+          });
         })
         .catch((error) => {
           console.error(error);
         });
     },
+    async searchUsers() {
+  try {
+    const res = await fetch(`http://localhost:8000/search?term=${this.searchTerm}`);
+    const data = await res.json();
+    if(Array.isArray(data)) {
+      this.users = data.map((user) => {
+        return { ...user, editing: false };
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+},
     create(nome, email) {
       const exists = this.users.some((user) => user.email === email);
 
@@ -151,10 +186,10 @@ export default {
           this.loadUsers();
           this.snackbar = {
             show: true,
-          text: "Cadastrado com sucesso",
-          timeout: 2000,
-          color: "green",
-          }
+            text: "Cadastrado com sucesso",
+            timeout: 2000,
+            color: "green",
+          };
           this.dialogAdd = false;
         })
         .catch((error) => {
@@ -170,48 +205,37 @@ export default {
           this.loadUsers();
           this.dialogDelete = false;
           this.snackbar = {
-          show: true,
-          text: "Usuario deletado com sucesso",
-          timeout: 2000,
-          color: "success",
-          }
+            show: true,
+            text: "Usuario deletado com sucesso",
+            timeout: 2000,
+            color: "success",
+          };
         })
         .catch((error) => {
           console.error(error);
         });
     },
     updateUser(id, nome, email) {
-      const exists = this.users.some((user) => user.email === email);
-
-      if (exists) {
-        this.snackbar = {
-          show: true,
-          text: "O e-mail inserido já está em uso!",
-          timeout: 3000,
-          color: "red",
-        };
-        return;
-      }
-  fetch(`http://localhost:8000/update/${id}`, {
-    method: "PUT",
-    body: JSON.stringify({ nome: nome, email: email }),
-    headers: { "Content-Type": "application/json" },
-  })
-    .then((res) => res.json())
-    .then(() => {
-      this.loadUsers();
-      this.dialogUpdate = false;
-      this.snackbar = {
-        show: true,
-        text: "Usuário atualizado com sucesso",
-        timeout: 2000,
-        color: "success",
-      };
-    })
-    .catch((error) => {
-      console.error("Erro ao atualizar usuário:", error);
-    });
-},
+      fetch(`http://localhost:8000/update/${id}`, {
+        method: "PUT",
+        body: JSON.stringify({ nome: nome, email: email }),
+        headers: { "Content-Type": "application/json" },
+      })
+        .then((res) => res.json())
+        .then(() => {
+          this.loadUsers();
+          this.dialogUpdate = false;
+          this.snackbar = {
+            show: true,
+            text: "Usuário atualizado com sucesso",
+            timeout: 2000,
+            color: "success",
+          };
+        })
+        .catch((error) => {
+          console.error("Erro ao atualizar usuário:", error);
+        });
+    },
     sortear() {
       const shuffledUsers = this.users.slice().sort(() => Math.random() - 0.5);
       const sortedUsers = shuffledUsers.map((user, index) => {
