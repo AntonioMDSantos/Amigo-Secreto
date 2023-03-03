@@ -50,6 +50,7 @@
         </v-btn>
       </v-card-actions>
     </v-card>
+    <v-snackbar v-model="snackbar" :timeout="timeout" :color="snackbarColor">{{ snackbarText }}</v-snackbar>
   </v-row>
 </template>
   
@@ -64,18 +65,28 @@ export default {
   data() {
     return {
       user: { ...this.selectedUser },
+      snackbar: false,
+      snackbarText: '',
+      snackbarColor: 'success', 
+      timeout: 3000
     };
   },
   methods: {
     validate() {
   if (this.$refs.form.validate()) {
+    if (/.+@.+/.test(this.email) && /^[a-zA-ZÀ-ÿ\s]*$/.test(this.nome)) {
     setTimeout(() => {
       const id = this.user.id;
       const nome = this.user.nome;
       const email = this.user.email;
       this.$emit("action", id, nome, email);
     }, 400);
-  }
+  } else {
+      this.snackbar = true;
+      this.snackbarText = 'Por favor, insira um email válido e um nome contendo apenas letras e espaços';
+      this.snackbarColor = 'error';
+    }
+}
 },
     close() {
       this.$emit("close");
