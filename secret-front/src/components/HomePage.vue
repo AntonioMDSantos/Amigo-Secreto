@@ -2,28 +2,44 @@
   <v-card>
     <v-layout class="fill-height">
       <v-app-bar color="primary" prominent>
-        <v-img src="../assets/img/boostech_log.png" contain></v-img>
+        <v-img
+          src="../assets/img/boostech_log.png"
+          max-height="50"
+          min-height="50"
+          min-width="300"
+          max-width="300"
+          contain
+        ></v-img>
+        <v-spacer></v-spacer>
+        <v-btn
+          icon="mdi-magnify"
+          variant="text"
+          @click.stop="drawer = !drawer"
+        ></v-btn>
         <v-btn icon="mdi-plus" @click="dialogAdd = true"></v-btn>
       </v-app-bar>
-      <v-snackbar
-        v-model="snackbar.show"
-        :timeout="snackbar.timeout"
-        :color="snackbar.color"
-        :top="true"
+
+      <v-navigation-drawer
+        style="border-bottom: 1px solid black"
+        v-model="drawer"
+        location="botom"
+        permanent
+        width="45"
+        rounded
       >
-        {{ snackbar.text }}
-      </v-snackbar>
-      <v-main class="flex-grow-1">
         <v-text-field
           density="compact"
           label="Pesquise por nome ou email"
           prepend-inner-icon="mdi-magnify"
-          variant="outlined"
+          variant="underline"
           single-line
           hide-details
           v-model="searchTerm"
           input="searchUsers"
         ></v-text-field>
+      </v-navigation-drawer>
+
+      <v-main class="flex-grow-1">
         <v-table>
           <thead>
             <tr>
@@ -96,6 +112,14 @@
         Sortear
       </v-btn>
     </v-card>
+    <v-snackbar
+      v-model="snackbar.show"
+      :timeout="snackbar.timeout"
+      :color="snackbar.color"
+      :top="true"
+    >
+      {{ snackbar.text }}
+    </v-snackbar>
   </v-card>
 </template>
 
@@ -111,6 +135,7 @@ export default {
     UpdateUser,
   },
   data: () => ({
+    drawer: false,
     dialogAdd: false,
     dialogDelete: false,
     dialogUpdate: false,
