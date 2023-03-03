@@ -1,52 +1,136 @@
-# Amigo Secreto
+<h1 align="center">
+    <img alt="Boostech" title="#NextLevelWeek" src="https://user-images.githubusercontent.com/80727142/222713250-71d70510-3ee0-4f4a-9091-fb290b3de2d8.png" />
+</h1>
+
+<p align="center">
+ <a href="#-sobre-o-projeto">Sobre</a> •
+ <a href="#-funcionalidades">Funcionalidades</a> •
+ <a href="#-layout">Layout</a> • 
+ <a href="#-como-executar-o-projeto">Como executar</a> • 
+ <a href="#-tecnologias">Tecnologias</a> • 
+ <a href="#-contribuidores">Contribuidores</a> • 
+ <a href="#-autor">Autor</a> • 
+ <a href="#user-content--licença">Licença</a>
+</p>
 
 
-> Basicamente é um projeto aonde tem a tabela de usuario, a pessoa pode criar, deletar ou editar um usuario, e no meio há um botão de sortear, para sortear as pessoas do amigo secreto, tudo isso sendo responsivo
+## 💻 Sobre o projeto
 
-### Ajustes e melhorias
+O projeto é basicamente um sorteador de amigo secreto, aonde você adiciona os nomes, com os dados nome + email, ao adicionar é criado na tabela e entao tem o botao de sortear, apos voce colocar todos os nomes, voce clica em sortear e é redireciona a uma outra pagina com os dados de quem caiu com quem
 
-O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
+---
 
-- [x] Tarefa 1
-- [x] Tarefa 2
-- [x] Tarefa 3
-- [x] Tarefa 4
-- [x] Tarefa 5
-- [x] Tarefa 6
+## ⚙️ Funcionalidades
 
-## 💻 Pré-requisitos
+- [x] Cadastrar usuario
+- [x] Editar usuario
+- [x] Deletar usuario
+- [x] Buscar usuario no v-text-field
+- [x] Sortear usuario 
 
-Antes de começar, verifique se você atendeu aos seguintes requisitos:
+---
 
-* Você instalou as `dependência`
+## 🎨 Layout
 
-## 🚀 Instalando dependencias
+### Web
 
-### ```Para instalar as dependencias do back, siga estas etapas:```
+<p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="https://user-images.githubusercontent.com/80727142/222730229-7705a42b-dd16-483d-b108-48c3a7ed0c5b.png" width="800px">
+</p>
+
+---
+
+## 🚀 Como executar o projeto
+
+Este projeto é divido em duas partes:
+1. Backend (pasta secret-back) 
+2. Frontend (pasta secret-front)
+
+💡O Frontend precisa que o Backend esteja sendo executado para funcionar.
+
+### Pré-requisitos
+
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). 
+Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+
+#### 🎲 Rodando o Backend (servidor)
+
+```bash
+
+# Clone este repositório
+$ git clone https://github.com/AntonioMDSantos/Amigo-Secreto.git
+
+# Vá para a pasta da aplicação back end
+$ cd secret-back
+
+# Instale as dependências
+$ npm install
+
+# Execute a aplicação em modo de desenvolvimento
+$ node src/server.js
+
+# O servidor inciará na porta:8000
 
 ```
-cd secret-back
-```
-```
-npm install
+
+#### 🧭 Rodando a aplicação web (Frontend)
+
+```bash
+
+# Clone este repositório
+$ git clone https://github.com/AntonioMDSantos/Amigo-Secreto.git
+
+# Vá para a pasta da aplicação front end
+$ cd secret-front
+
+# Instale as dependências
+$ npm install
+
+# Execute a aplicação em modo de desenvolvimento
+$ npm run serve
+
+# A aplicação será aberta na porta:8080 - acesse http://localhost:8080
+
 ```
 
-### ```Para instalar as dependencias do front, siga estas etapas:```
+---
 
-```
-cd secret-front
-```
-```
-npm install
-```
+## 🛠 Tecnologias
 
-## ☕ Iniciando o back
+As seguintes ferramentas foram usadas na construção do projeto:
 
-```
-node src/server.js
-```
+#### **Website**  ([Vue](https://vuejs.org/))
 
-## ☕ Iniciando o front
-```
-npm run serve
-```
+-   **[Vue Router](https://router.vuejs.org/)**
+-   **[Vuetify](https://vuetifyjs.com/en/)**
+
+
+#### [](https://github.com/tgmarinho/Ecoleta#server-nodejs--typescript)**Server**  ([NodeJS](https://nodejs.org/en/))
+
+-   **[Express](https://expressjs.com/)**
+-   **[CORS](https://expressjs.com/en/resources/middleware/cors.html)**
+-   **[MySql](https://www.mysql.com/)**
+-   **[Sequelize](https://sequelize.org/)**
+
+#### [](https://github.com/tgmarinho/Ecoleta#utilit%C3%A1rios)**Utilitários**
+
+-   Editor:  **[Visual Studio Code](https://code.visualstudio.com/)**
+-   Teste de API:  **[Thunder Client](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client)**
+-   Ícones:  **[Material Icons](https://pictogrammers.com/library/mdi/?welcome)**
+
+
+---
+
+
+## 🦸 Autor
+
+ 
+ <sub><b>Antonio Medeiros</b></sub>
+ <br />
+
+[![Linkedin Badge](https://img.shields.io/badge/-Antonio-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/antoniomdsantoss/)](https://www.linkedin.com/in/antoniomdsantoss/) 
+
+[![Gmail Badge](https://img.shields.io/badge/-Antonio-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:tony-ms@hotmail.com)](mailto:tony-ms@hotmail.com)
+
+---
