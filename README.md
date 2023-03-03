@@ -55,6 +55,8 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 
 #### 🎲 Rodando o Backend (servidor)
 
+### ```É NECESSARIO CRIAR A TABELA boostech NO BANCO PARA INICIAR```
+
 ```bash
 
 # Clone este repositório
