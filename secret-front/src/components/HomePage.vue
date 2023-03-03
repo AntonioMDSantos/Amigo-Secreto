@@ -35,6 +35,7 @@
           single-line
           hide-details
           v-model="searchTerm"
+          keyup="searchUsers"
         ></v-text-field>
       </v-navigation-drawer>
 
