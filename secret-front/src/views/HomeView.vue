@@ -3,13 +3,13 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 
 // Components
-import HomePage from '../components/HomePage.vue';
+import HomePage from "../components/HomePage.vue";
 
 export default defineComponent({
-  name: 'HomeView',
+  name: "HomeView",
   components: {
     HomePage,
   },

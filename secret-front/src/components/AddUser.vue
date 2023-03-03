@@ -9,22 +9,30 @@
           <v-form ref="form" class="form">
             <v-row>
               <v-col cols="12" sm="16" md="14">
-                <v-text-field 
-                  v-model="nome" 
-                  label="Nome" 
-                  required 
+                <v-text-field
+                  v-model="nome"
+                  label="Nome"
+                  required
                   variant="outlined"
-                  :rules="[v => !!v || 'Nome é obrigatório', v => /^[a-zA-ZÀ-ÿ\s]*$/.test(v) || 'Nome deve conter apenas letras e espaços']"
+                  :rules="[
+                    (v) => !!v || 'Nome é obrigatório',
+                    (v) =>
+                      /^[a-zA-ZÀ-ÿ\s]*$/.test(v) ||
+                      'Nome deve conter apenas letras e espaços',
+                  ]"
                 ></v-text-field>
               </v-col>
               <v-col cols="12" sm="16" md="14">
-                <v-text-field 
-                type="email"
-                  v-model="email" 
-                  label="Email" 
-                  required 
+                <v-text-field
+                  type="email"
+                  v-model="email"
+                  label="Email"
+                  required
                   variant="outlined"
-                  :rules="[v => !!v || 'Email é obrigatório', v => /.+@.+/.test(v) || 'Email deve ser válido']"
+                  :rules="[
+                    (v) => !!v || 'Email é obrigatório',
+                    (v) => /.+@.+/.test(v) || 'Email deve ser válido',
+                  ]"
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -35,10 +43,10 @@
         <v-btn width="45%" dark color="red darken-1" @click="close">
           Close
         </v-btn>
-        <v-btn 
-          width="45%" 
-          dark 
-          color="#105269" 
+        <v-btn
+          width="45%"
+          dark
+          color="#105269"
           @click="validate()"
           :disabled="!nome || !email"
         >
@@ -46,7 +54,9 @@
         </v-btn>
       </v-card-actions>
     </v-card>
-    <v-snackbar v-model="snackbar" :timeout="timeout" :color="snackbarColor">{{ snackbarText }}</v-snackbar>
+    <v-snackbar v-model="snackbar" :timeout="timeout" :color="snackbarColor">{{
+      snackbarText
+    }}</v-snackbar>
   </v-row>
 </template>
 
@@ -54,32 +64,33 @@
 export default {
   data() {
     return {
-      nome: '',
-      email: '',
+      nome: "",
+      email: "",
       snackbar: false,
-      snackbarText: '',
-      snackbarColor: 'success', 
-      timeout: 3000
+      snackbarText: "",
+      snackbarColor: "success",
+      timeout: 3000,
     };
   },
   methods: {
     emitSave() {
       this.$emit("save");
     },
-validate() {
-  if (this.$refs.form.validate()) {
-    if (/.+@.+/.test(this.email) && /^[a-zA-ZÀ-ÿ\s]*$/.test(this.nome)) {
-      setTimeout(() => {
-        this.emitData();
-        this.emitSave();
-      }, 400);
-    } else {
-      this.snackbar = true;
-      this.snackbarText = 'Por favor, insira um email válido e um nome contendo apenas letras e espaços';
-      this.snackbarColor = 'error';
-    }
-  }
-},
+    validate() {
+      if (this.$refs.form.validate()) {
+        if (/.+@.+/.test(this.email) && /^[a-zA-ZÀ-ÿ\s]*$/.test(this.nome)) {
+          setTimeout(() => {
+            this.emitData();
+            this.emitSave();
+          }, 400);
+        } else {
+          this.snackbar = true;
+          this.snackbarText =
+            "Por favor, insira um email válido e um nome contendo apenas letras e espaços";
+          this.snackbarColor = "error";
+        }
+      }
+    },
     close() {
       this.$emit("close");
     },

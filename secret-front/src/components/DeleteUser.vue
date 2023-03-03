@@ -25,8 +25,7 @@ export default {
   props: {
     deleting: Boolean,
   },
-  data() {
-  },
+  data() {},
   methods: {
     emitDelete() {
       this.$emit("deletar");

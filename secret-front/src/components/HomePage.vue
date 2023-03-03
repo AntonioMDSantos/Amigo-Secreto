@@ -15,15 +15,15 @@
       </v-snackbar>
       <v-main class="flex-grow-1">
         <v-text-field
-        density="compact"
-        label="Pesquise por nome ou email"
-        prepend-inner-icon="mdi-magnify"
-        variant="outlined"
-        single-line
-        hide-details
-        v-model="searchTerm"
-        input="searchUsers"
-      ></v-text-field>
+          density="compact"
+          label="Pesquise por nome ou email"
+          prepend-inner-icon="mdi-magnify"
+          variant="outlined"
+          single-line
+          hide-details
+          v-model="searchTerm"
+          input="searchUsers"
+        ></v-text-field>
         <v-table>
           <thead>
             <tr>
@@ -35,7 +35,7 @@
           </thead>
           <tbody>
             <tr
-            v-for="user in filteredUsers"
+              v-for="user in filteredUsers"
               :key="user.id"
               @click="selectedUser = user"
             >
@@ -152,18 +152,20 @@ export default {
         });
     },
     async searchUsers() {
-  try {
-    const res = await fetch(`http://localhost:8000/search?term=${this.searchTerm}`);
-    const data = await res.json();
-    if(Array.isArray(data)) {
-      this.users = data.map((user) => {
-        return { ...user, editing: false };
-      });
-    }
-  } catch (err) {
-    console.log(err);
-  }
-},
+      try {
+        const res = await fetch(
+          `http://localhost:8000/search?term=${this.searchTerm}`
+        );
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          this.users = data.map((user) => {
+            return { ...user, editing: false };
+          });
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    },
     create(nome, email) {
       const exists = this.users.some((user) => user.email === email);
 
