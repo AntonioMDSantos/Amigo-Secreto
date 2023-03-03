@@ -14,7 +14,7 @@
 
 ## 💻 Sobre o projeto
 
-O projeto é basicamente um sorteador de amigo secreto, aonde você adiciona os nomes, com os dados nome + email, ao adicionar é criado na tabela e entao tem o botao de sortear, apos voce colocar todos os nomes, voce clica em sortear e é redireciona a uma outra pagina com os dados de quem caiu com quem
+O projeto é basicamente um sorteador de amigo secreto, aonde você adiciona os nomes, com os dados nome + email, ao adicionar é criado na tabela e entao tem o botao de sortear, apos voce colocar todos os nomes, voce clica em sortear e é redirecionada a uma outra pagina com os dados de quem caiu com quem
 
 ---
 
