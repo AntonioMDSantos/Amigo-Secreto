@@ -57,5 +57,39 @@ module.exports =
             await ModelUser.destroy({where: {id}})
             res.status(200).json({ok: true})
         }
-    }
+    },
+
+    async Search(req, res) {
+        try {
+          const { term } = req.query;
+      
+          const users = await ModelUser.findAll({
+            where: {
+              [Op.or]: [
+                {
+                  id: {
+                    [Op.like]: `%${term}%`,
+                  },
+                },
+                {
+                  nome: {
+                    [Op.like]: `%${term}%`,
+                  },
+                },
+                {
+                  email: {
+                    [Op.like]: `%${term}%`,
+                  },
+                },
+              ],
+            },
+          });
+      
+          return res.json(users);
+        } catch (err) {
+          console.log(err);
+          return res.status(500).json({ message: 'Ocorreu um erro interno' });
+        }
+      },
+      
 }

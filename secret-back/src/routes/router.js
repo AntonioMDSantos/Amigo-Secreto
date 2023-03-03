@@ -11,4 +11,6 @@ routes.put('/update/:id', controllerUser.Update)
 
 routes.delete('/delete/:id', controllerUser.Delete)
 
+routes.get('/search', controllerUser.Search);
+
 module.exports = routes
