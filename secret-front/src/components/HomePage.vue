@@ -155,7 +155,7 @@ export default {
     filteredUsers() {
   return this.users.filter(
     (user) => {
-      const emailPrefix = user.email.split('@')[0]; // Obtenha a parte do email antes do '@'
+      const emailPrefix = user.email.split('@')[0];
       return emailPrefix.toLowerCase().includes(this.searchTerm.toLowerCase()) || user.nome.toLowerCase().includes(this.searchTerm.toLowerCase());
     }
   );
