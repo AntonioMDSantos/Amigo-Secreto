@@ -108,7 +108,7 @@
       </v-dialog>
     </v-layout>
     <v-card style="text-align: center">
-      <v-btn class="mx-2" color="blue accent-4" @click="sortear()">
+      <v-btn class="mx-2" color="black" @click="sortear()">
         Sortear
       </v-btn>
     </v-card>
