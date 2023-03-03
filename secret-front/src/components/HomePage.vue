@@ -35,7 +35,6 @@
           single-line
           hide-details
           v-model="searchTerm"
-          input="searchUsers"
         ></v-text-field>
       </v-navigation-drawer>
 
