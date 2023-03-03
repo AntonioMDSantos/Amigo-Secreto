@@ -9,7 +9,7 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 
 - [x] Tarefa 1
 - [x] Tarefa 2
-- [ ] Tarefa 3
+- [x] Tarefa 3
 - [ ] Tarefa 4
 - [x] Tarefa 5
 - [x] Tarefa 6
