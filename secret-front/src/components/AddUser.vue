@@ -14,7 +14,7 @@
                   label="Nome" 
                   required 
                   variant="outlined"
-                  :rules="[v => !!v || 'Nome é obrigatório', v => /^[a-zA-Z\s]*$/.test(v) || 'Nome deve conter apenas letras e espaços']"
+                  :rules="[v => !!v || 'Nome é obrigatório', v => /^[a-zA-ZÀ-ÿ\s]*$/.test(v) || 'Nome deve conter apenas letras e espaços']"
                 ></v-text-field>
               </v-col>
               <v-col cols="12" sm="16" md="14">
@@ -68,7 +68,7 @@ export default {
     },
 validate() {
   if (this.$refs.form.validate()) {
-    if (/.+@.+/.test(this.email) && /^[a-zA-Z\s]*$/.test(this.nome)) {
+    if (/.+@.+/.test(this.email) && /^[a-zA-ZÀ-ÿ\s]*$/.test(this.nome)) {
       setTimeout(() => {
         this.emitData();
         this.emitSave();
