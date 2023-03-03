@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-app-bar color="primary" prominent>
+    <v-app-bar color="black" prominent>
       <v-toolbar-title style="text-align: center"
         >Resultado do sorteio</v-toolbar-title
       >
@@ -15,7 +15,7 @@
       </v-list-item>
     </v-list>
     <v-card-actions class="justify-center">
-      <v-btn color="primary" variant="flat" @click="$router.push('/')"
+      <v-btn color="black" variant="flat" @click="$router.push('/')"
         >Voltar para a Home Page</v-btn
       >
     </v-card-actions>
