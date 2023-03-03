@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-layout class="fill-height">
-      <v-app-bar color="primary" prominent>
+      <v-app-bar color="black" prominent>
         <v-img
           src="../assets/img/boostech_log.png"
           max-height="50"
