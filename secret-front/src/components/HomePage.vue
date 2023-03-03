@@ -35,6 +35,7 @@
           single-line
           hide-details
           v-model="searchTerm"
+          keyup="searchUsers"
         ></v-text-field>
       </v-navigation-drawer>
 
@@ -107,7 +108,7 @@
       </v-dialog>
     </v-layout>
     <v-card style="text-align: center">
-      <v-btn class="mx-2" color="black" @click="sortear()">
+      <v-btn class="mx-2" color="blue accent-4" @click="sortear()">
         Sortear
       </v-btn>
     </v-card>
@@ -152,12 +153,13 @@ export default {
   }),
   computed: {
     filteredUsers() {
-      return this.users.filter(
-        (user) =>
-          user.nome.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-          user.email.toLowerCase().includes(this.searchTerm.toLowerCase())
-      );
-    },
+  return this.users.filter(
+    (user) => {
+      const emailPrefix = user.email.split('@')[0]; // Obtenha a parte do email antes do '@'
+      return emailPrefix.toLowerCase().includes(this.searchTerm.toLowerCase()) || user.nome.toLowerCase().includes(this.searchTerm.toLowerCase());
+    }
+  );
+},
   },
   created() {
     this.loadUsers();
