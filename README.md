@@ -33,7 +33,8 @@ O projeto é basicamente um sorteador de amigo secreto, aonde você adiciona os 
 ### Web
 
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
-  <img alt="NextLevelWeek" title="#NextLevelWeek" src="https://user-images.githubusercontent.com/80727142/222730229-7705a42b-dd16-483d-b108-48c3a7ed0c5b.png" width="800px">
+  <img src="https://user-images.githubusercontent.com/80727142/222791557-bfa50737-4b58-4c77-acb3-ac93e77826aa.png" width="800px">
+<img src="https://user-images.githubusercontent.com/80727142/222791795-ec5e334d-4cf0-4a1b-837e-1121b6d01a06.png" width="800px">
 </p>
 
 ---
